@@ -103,3 +103,5 @@ Create a new branch: git checkout -b feature-name.
 Commit your changes: git commit -m "Add feature".
 Push to your fork: git push origin feature-name.
 Open a pull request.
+![image](https://github.com/user-attachments/assets/b3458881-6d9e-48ca-bb0e-063134c4b7a1)
+
