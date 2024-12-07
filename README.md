@@ -1,158 +1,105 @@
-# **Crawler AI**
+AI Crawler
+AI Crawler is a web scraping tool that allows users to crawl a webpage and extract relevant information based on a user-specified prompt. It supports both static and dynamic content scraping using the requests library and Selenium. The extracted data is processed using machine learning models for relevance and can be saved and downloaded in JSON format.
 
-A lightweight web crawling API with semantic search capabilities. This API enables users to scrape web pages, extract structured content, and search for relevant information using advanced natural language processing.
+Features
+Web Crawling: Crawl web pages recursively and extract sections based on headings.
+Content Extraction: Extract content under headings and subheadings (e.g., h1, h2, h3 tags).
+Machine Learning Integration: Uses a sentence-transformer model to analyze relevance to user queries.
+Dynamic Scraping: Supports scraping pages that require JavaScript rendering via Selenium.
+JSON Output: Save extracted content in a well-structured, indented JSON format.
+Downloadable Results: User interface for downloading the extracted data as a JSON file.
+Requirements
+Python 3.6+
 
-## **Features**
-- Scrapes web pages dynamically or statically.
-- Extracts content sections based on headings.
-- Performs semantic search on extracted content using `sentence-transformers`.
-- Recursively scrapes linked pages up to a specified depth.
-- Returns results in JSON format.
+Install dependencies:
 
----
+bash
+Copy code
+pip install -r requirements.txt
+Setup
+Clone the repository:
 
-## **Getting Started**
+bash
+Copy code
+git clone https://github.com/sunnidunni/ai-crawler.git
+cd ai-crawler
+Install dependencies:
 
-### **Installation**
+bash
+Copy code
+pip install -r requirements.txt
+Run the Flask Application:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/sunnidunni/crawler-api.git
-   cd crawler-api
-   ```
+In the app.py directory, start the Flask app:
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+bash
+Copy code
+python app.py
+The server will run on http://127.0.0.1:5000.
 
-3. Run the API:
-   ```bash
-   python app.py
-   ```
+API Endpoints
+POST /crawl
+This endpoint accepts a JSON payload with the following parameters:
 
----
-
-### **API Endpoints**
-
-#### **1. Crawl Endpoint**
-`POST /crawl`
-
-This endpoint performs a web crawl and semantic search based on the provided URL and prompt.
-
-##### **Request Body**
-- **`url`** *(string, required)*: The URL of the web page to crawl.
-- **`prompt`** *(string, required)*: The search query for semantic search.
-- **`max_depth`** *(integer, optional)*: The maximum depth for recursive crawling (default: `0`).
-
-##### **Example Request**
-```json
-POST http://127.0.0.1:5000/crawl
-Content-Type: application/json
-
+url: The URL of the webpage to crawl.
+prompt: A query or prompt that will be used to analyze the relevance of the extracted data.
+max_depth (Optional): The maximum depth of the crawl (default is 0).
+Example Request:
+json
+Copy code
 {
-  "url": "https://example.com",
-  "prompt": "Find sections about technology.",
-  "max_depth": 1
+  "url": "https://www.sf.gov/",
+  "prompt": "What are the available services in San Francisco?",
+  "max_depth": 2
 }
-```
-
-##### **Response**
-- **200 OK**: Returns the extracted and filtered content based on the prompt.
-- **400 Bad Request**: Invalid or missing input fields.
-- **500 Internal Server Error**: If an error occurs during crawling or processing.
-
-##### **Example Response**
-```json
+Example Response:
+json
+Copy code
 {
   "results": [
-    [32.5, "Technology: This section covers the latest in tech innovations..."],
-    [28.0, "Future Trends: Technology is evolving rapidly, with AI at the forefront..."]
+    {
+      "score": 0.95,
+      "section": "Services",
+      "content": "Activities: Things to do in San Francisco."
+    },
+    {
+      "score": 0.88,
+      "section": "Building",
+      "content": "Construction resources and property information."
+    }
   ]
 }
-```
+Web Interface
+The crawler also has a simple web interface where users can:
 
----
+Input a URL and prompt.
+Set the crawl depth.
+Trigger the crawl and receive results.
+Download the results in a JSON format.
+Access the interface at http://127.0.0.1:5000 after running the Flask app.
 
-### **Usage Examples**
+Downloading Results
+Once you’ve performed a crawl, you can download the results as a JSON file by clicking the Download button in the web interface.
 
-#### **Using `curl`**
-```bash
+Example of How to Use the API
+Here’s an example of how you can use the API with curl:
+
+bash
+Copy code
 curl -X POST http://127.0.0.1:5000/crawl \
--H "Content-Type: application/json" \
--d '{
-  "url": "https://example.com",
-  "prompt": "Find sections about technology.",
-  "max_depth": 1
-}'
-```
-
-#### **Using Python**
-```python
-import requests
-
-url = "http://127.0.0.1:5000/crawl"
-data = {
-    "url": "https://example.com",
-    "prompt": "Find sections about technology.",
-    "max_depth": 1
-}
-
-response = requests.post(url, json=data)
-print(response.json())
-```
-
----
-
-### **Dependencies**
-- `Flask`: For creating the REST API.
-- `requests`: For static web scraping.
-- `beautifulsoup4`: For HTML parsing.
-- `selenium`: For dynamic web scraping.
-- `sentence-transformers`: For semantic search.
-- `numpy`: For efficient numerical operations.
-
-Install all dependencies using:
-```bash
-pip install -r requirements.txt
-```
-
----
-
-### **Development**
-
-1. **Modify `app.py`**: Extend the API to add more endpoints if required.
-2. **Test Locally**: Use tools like Postman or `curl` for testing.
-3. **Deploy**: Deploy the API to a cloud platform (e.g., Heroku, AWS, or Google Cloud).
-
----
-
-### **Contributing**
-1. Fork the repository.
-2. Create a new feature branch:
-   ```bash
-   git checkout -b feature-name
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Add new feature"
-   ```
-4. Push to your branch:
-   ```bash
-   git push origin feature-name
-   ```
-5. Open a pull request.
-
----
-
-### **License**
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-### **Contact**
-For any questions or feedback, feel free to contact:
-
-- **Name**: Derek Sun
-- **Email**: derekdagreat@gmail.com
-- **GitHub**: https://github.com/sunnidunni
+    -H "Content-Type: application/json" \
+    -d '{
+        "url": "https://www.sf.gov/",
+        "prompt": "What are the services available?",
+        "max_depth": 2
+    }'
+Notes
+Dynamic Scraping: To scrape dynamic content (e.g., JavaScript-rendered content), set the use_dynamic flag to True when initializing the crawler in the CrawlerClient class.
+Limitations: Be mindful of website terms of service. Ensure you respect robots.txt and avoid overloading servers with too many requests.
+Contributing
+Fork the repository.
+Clone your fork: git clone https://github.com/sunnidunni/ai-crawler.git.
+Create a new branch: git checkout -b feature-name.
+Commit your changes: git commit -m "Add feature".
+Push to your fork: git push origin feature-name.
+Open a pull request.
