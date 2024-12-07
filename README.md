@@ -153,10 +153,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ### **Contact**
 For any questions or feedback, feel free to contact:
 
-- **Name**: Your Name  
-- **Email**: your-email@example.com  
-- **GitHub**: [Your GitHub Profile](https://github.com/yourusername)
-
----
-
-Let me know if you'd like to customize it further!
+- **Name**: Derek Sun
+- **Email**: derekdagreat@gmail.com
+- **GitHub**: https://github.com/sunnidunni
