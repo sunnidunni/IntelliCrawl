@@ -1,60 +1,80 @@
-AI Crawler
-AI Crawler is a web scraping tool that allows users to crawl a webpage and extract relevant information based on a user-specified prompt. It supports both static and dynamic content scraping using the requests library and Selenium. The extracted data is processed using machine learning models for relevance and can be saved and downloaded in JSON format.
+# AI Crawler
 
-Features
-Web Crawling: Crawl web pages recursively and extract sections based on headings.
-Content Extraction: Extract content under headings and subheadings (e.g., h1, h2, h3 tags).
-Machine Learning Integration: Uses a sentence-transformer model to analyze relevance to user queries.
-Dynamic Scraping: Supports scraping pages that require JavaScript rendering via Selenium.
-JSON Output: Save extracted content in a well-structured, indented JSON format.
-Downloadable Results: User interface for downloading the extracted data as a JSON file.
-Requirements
-Python 3.6+
+**AI Crawler** is a web scraping tool that allows users to crawl a webpage and extract relevant information based on a user-specified prompt. It supports both static and dynamic content scraping using the `requests` library and Selenium. The extracted data is processed using machine learning models for relevance and can be saved and downloaded in JSON format.
 
-Install dependencies:
+## Features
 
-bash
-Copy code
+- **Web Crawling**: Crawl web pages recursively and extract sections based on headings.
+- **Content Extraction**: Extract content under headings and subheadings (e.g., `h1`, `h2`, `h3` tags).
+- **Machine Learning Integration**: Uses a sentence-transformer model to analyze relevance to user queries.
+- **Dynamic Scraping**: Supports scraping pages that require JavaScript rendering via Selenium.
+- **JSON Output**: Save extracted content in a well-structured, indented JSON format.
+- **Downloadable Results**: User interface for downloading the extracted data as a JSON file.
+
+## Requirements
+
+- Python 3.6+
+
+### Install Dependencies:
+
+```bash
 pip install -r requirements.txt
-Setup
-Clone the repository:
+```
 
-bash
-Copy code
+## Setup
+
+### Clone the Repository:
+
+```bash
 git clone https://github.com/sunnidunni/ai-crawler.git
 cd ai-crawler
-Install dependencies:
+```
 
-bash
-Copy code
+### Install Dependencies:
+
+```bash
 pip install -r requirements.txt
-Run the Flask Application:
+```
 
-In the app.py directory, start the Flask app:
+### API:
 
-bash
-Copy code
+To run the API just go into terminal and type `pip install .`
+
+You can then use the API in a similar format as `example.py`
+
+### Run the Flask Application to Show the Web Interface:
+
+In the `app.py` directory, start the Flask app:
+
+```bash
 python app.py
-The server will run on http://127.0.0.1:5000.
+```
 
-API Endpoints
-POST /crawl
+The server will run on `http://127.0.0.1:5000`.
+
+## API Endpoints
+
+### `POST /crawl`
+
 This endpoint accepts a JSON payload with the following parameters:
 
-url: The URL of the webpage to crawl.
-prompt: A query or prompt that will be used to analyze the relevance of the extracted data.
-max_depth (Optional): The maximum depth of the crawl (default is 0).
-Example Request:
-json
-Copy code
+- `url`: The URL of the webpage to crawl.
+- `prompt`: A query or prompt that will be used to analyze the relevance of the extracted data.
+- `max_depth` (Optional): The maximum depth of the crawl (default is `0`).
+
+#### Example Request:
+
+```json
 {
   "url": "https://www.sf.gov/",
   "prompt": "What are the available services in San Francisco?",
   "max_depth": 2
 }
-Example Response:
-json
-Copy code
+```
+
+#### Example Response:
+
+```json
 {
   "results": [
     {
@@ -69,39 +89,60 @@ Copy code
     }
   ]
 }
-Web Interface
-The crawler also has a simple web interface where users can:
+```
 
-Input a URL and prompt.
-Set the crawl depth.
-Trigger the crawl and receive results.
-Download the results in a JSON format.
-Access the interface at http://127.0.0.1:5000 after running the Flask app.
+## Web Interface
 
-Downloading Results
-Once you’ve performed a crawl, you can download the results as a JSON file by clicking the Download button in the web interface.
+On the web interface users can:
 
-Example of How to Use the API
-Here’s an example of how you can use the API with curl:
+- Input a URL and prompt.
+- Set the crawl depth.
+- Trigger the crawl and receive results.
+- Download the results in a JSON format.
 
-bash
-Copy code
-curl -X POST http://127.0.0.1:5000/crawl \
-    -H "Content-Type: application/json" \
-    -d '{
-        "url": "https://www.sf.gov/",
-        "prompt": "What are the services available?",
-        "max_depth": 2
-    }'
-Notes
-Dynamic Scraping: To scrape dynamic content (e.g., JavaScript-rendered content), set the use_dynamic flag to True when initializing the crawler in the CrawlerClient class.
-Limitations: Be mindful of website terms of service. Ensure you respect robots.txt and avoid overloading servers with too many requests.
-Contributing
-Fork the repository.
-Clone your fork: git clone https://github.com/sunnidunni/ai-crawler.git.
-Create a new branch: git checkout -b feature-name.
-Commit your changes: git commit -m "Add feature".
-Push to your fork: git push origin feature-name.
-Open a pull request.
+Access the interface at `http://127.0.0.1:5000` after running the Flask app.
+
 ![image](https://github.com/user-attachments/assets/b3458881-6d9e-48ca-bb0e-063134c4b7a1)
+
+
+### Downloading Results
+
+Once you’ve performed a crawl, you can download the results as a JSON file by clicking the **Download** button in the web interface.
+
+
+## Notes
+
+- **Dynamic Scraping**: To scrape dynamic content (e.g., JavaScript-rendered content), set the `use_dynamic` flag to `True` when initializing the crawler in the `CrawlerClient` class.
+- **Limitations**: Be mindful of website terms of service. Ensure you respect `robots.txt` and avoid overloading servers with too many requests.
+- **Scores**: Scores are all above 0. The higher the score the more probable that a scraped text is related to the prompt. A score of 20+ is almost always directly related.
+
+## Contributing
+
+1. Fork the repository.
+2. Clone your fork:
+
+   ```bash
+   git clone https://github.com/sunnidunni/ai-crawler.git
+   ```
+
+3. Create a new branch:
+
+   ```bash
+   git checkout -b feature-name
+   ```
+
+4. Commit your changes:
+
+   ```bash
+   git commit -m "Add feature"
+   ```
+
+5. Push to your fork:
+
+   ```bash
+   git push origin feature-name
+   ```
+
+6. Open a pull request.
+
 
