@@ -102,7 +102,8 @@ On the web interface users can:
 
 Access the interface at `http://127.0.0.1:5000` after running the Flask app.
 
-![image](https://github.com/user-attachments/assets/b3458881-6d9e-48ca-bb0e-063134c4b7a1)
+![image](https://github.com/user-attachments/assets/b5bddb2a-fd0d-4e06-a86d-28154319e35f)
+
 
 
 ### Downloading Results
