@@ -8,7 +8,6 @@ from sentence_transformers import SentenceTransformer, util
 import numpy as np
 import re
 from urllib.parse import urljoin
-import json
 
 def update_and_combine(dict1, dict2):
     for key, value in dict2.items():
@@ -78,7 +77,7 @@ class Crawler:
 
     def get_info(self, url, prompt, max_depth=0):
         sections = self.scrape_page(url, 0, max_depth, set())
-        docs = [x+':: '+y for x,y in zip(list(sections.keys()), list(sections.values()))]
+        docs = [x+': '+y for x,y in zip(list(sections.keys()), list(sections.values()))]
         #list(filter(lambda x: len(x) > 20, text.split('\n')))
 
         # Load the model
@@ -104,9 +103,9 @@ class Crawler:
             if score > 16:
                 lst2.append([score, doc])
 
-        contents = list(map(lambda x: x[1], lst2))
-        result = {'url':url,'sections':[]}
+        result = '\n'.join(list(map(lambda x: x[1], lst2)))
 
-        for item in contents:
-            result['sections'].append({'heading':item.split(":: ")[0],'content':item.split(":: ")[1].replace('\n',' ')})
+        with open('data.txt','w',encoding='utf-8') as f:
+            f.write(result)
+
         return result

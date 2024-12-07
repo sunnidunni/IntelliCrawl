@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: crawler
+Version: 0.1.0
+Summary: A dynamic web crawler with semantic search capabilities
+Author: Derek Sun
+Requires-Python: >=3.7
