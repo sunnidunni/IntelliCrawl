@@ -38,7 +38,7 @@ pip install -r requirements.txt
 
 ### API:
 
-To run the API just go into terminal and type `pip install .`
+To run the API just go into terminal and type `pip install .` under the project root directory
 
 You can then use the API in a similar format as `example.py`
 
