@@ -17,7 +17,7 @@ A lightweight web crawling API with semantic search capabilities. This API enabl
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/crawler-api.git
+   git clone https://github.com/sunnidunni/crawler-api.git
    cd crawler-api
    ```
 
