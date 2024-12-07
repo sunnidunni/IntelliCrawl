@@ -104,7 +104,7 @@ class Crawler:
             if score > 16:
                 lst2.append([score, doc])
 
-        contents = list(map(lambda x: x[0]+":: "+x[1], lst2))
+        contents = list(map(lambda x: str(x[0])+":: "+x[1], lst2))
         result = {'url':url,'sections':[]}
 
         for item in contents:
