@@ -44,7 +44,7 @@ You can then use the API in a similar format as `example.py`
 
 ### Run the Flask Application to Show the Web Interface:
 
-In the `app.py` directory, start the Flask app:
+You can just run app.py, or in the `app.py` directory, start the Flask app:
 
 ```bash
 python app.py
