@@ -1,6 +1,6 @@
-# AI Crawler
+# IntelliCrawl
 
-**AI Crawler** is a web scraping tool that allows users to crawl a webpage and extract relevant information based on a user-specified prompt. It supports both static and dynamic content scraping using the `requests` library and Selenium. The extracted data is processed using machine learning models for relevance and can be saved and downloaded in JSON format.
+**IntelliCrawl** is a web scraping tool that allows users to crawl a webpage and extract relevant information based on a user-specified prompt. It supports both static and dynamic content scraping using the `requests` library and Selenium. The extracted data is processed using machine learning models for relevance and can be saved and downloaded in JSON format.
 
 ## Features
 
